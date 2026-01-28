@@ -14,12 +14,71 @@
         Title="MyBudget" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
             <RowDefinition Height="*"/>
             <RowDefinition Height="28px"/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "*"/>
+                <ColumnDefinition Width = "100"/>
+                <ColumnDefinition Width = "100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
 
-        <StatusBar Grid.Row="1">
+            <Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Grid.Column="1">
+                Hello
+            </Button>
+
+            <Button 
+                x:Name="NewBudgetButton"
+                Grid.Column="2"
+                Height="50" 
+                Width="50"
+                Margin="5"
+                Style="{StaticResource MahApps.Styles.Button.Circle}"
+                Background="{StaticResource MahApps.Brushes.Accent}"
+                Click="NewBudgetButton_Click" >
+                <mah:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" Foreground="White" />
+            </Button>
+            
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="180.667" />
+                <ColumnDefinition Width="13.333" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <StackPanel
+            x:Name="BudgetStackPanel"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Orientation="Vertical"
+            Visibility="Collapsed">
+            <DatePicker 
+                x:Name="StartDatePicker"
+                Margin="3"
+                mah:TextBoxHelper.UseFloatingWatermark="True"
+                mah:TextBoxHelper.Watermark="Start Date" />
+            <DatePicker
+                x:Name="EndDatePicker"
+                Margin="3"
+                mah:TextBoxHelper.UseFloatingWatermark="True"
+                mah:TextBoxHelper.Watermark="=End Date" />
+            <TextBox
+                x:Name="MonthBudgetTextBox"
+                Margin="3"/>
+
+
+        </StackPanel>
+
+        <StatusBar Grid.Row="2">
             <StatusBarItem FontSize="16">Remaining  Monthly Budget</StatusBarItem>
             <StatusBarItem>
                 <TextBlock FontSize="16" Text="{Binding RemainingBalance}"></TextBlock>
